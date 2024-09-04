@@ -9,13 +9,20 @@ main() {
 
     case "$1" in
 
-        '') open_sqlitebrowser ;;
+        '') print_guidance ;;
+        open) open_sqlitebrowser ;;
         new) shift ; route_new "$@" ;;
         transac*) shift ; "$transactions_manager" "$@" ;;
-        # *) echo_warning "$@" ;;
+        *) echo 'nothing happened...' ;;
 
     esac
 
+}
+
+print_guidance() {
+	echo 'coinmaster:
+	open > opens database in sqlitebrowser
+	new transac > inserts a transaction in coinmaster'
 }
 
 open_sqlitebrowser() {
