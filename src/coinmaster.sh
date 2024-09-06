@@ -12,6 +12,7 @@ main() {
         '') print_guidance ;;
         open) open_sqlitebrowser ;;
         new) shift ; route_new "$@" ;;
+        cli) start_sqlite3 ;;
         transac*) shift ; "$transactions_manager" "$@" ;;
         *) echo 'nothing happened...' ;;
 
@@ -21,8 +22,9 @@ main() {
 
 print_guidance() {
 	echo 'coinmaster:
-	open > opens database in sqlitebrowser
-	new transac > inserts a transaction in coinmaster'
+    cli > starts sqlite3 shell
+    open > opens database in sqlitebrowser
+    new transac > inserts a transaction in coinmaster'
 }
 
 open_sqlitebrowser() {
@@ -35,4 +37,12 @@ route_new() {
         transac*) "$transactions_manager" --new ;;
         *) echo "tf is $@. See $SRC_HOME" ;;
     esac
+}
+
+start_sqlite3() {
+    sqlite3 "$coinmaster_location" -box "SELECT * FROM _main_"
+    echo -e "SELECT FROM THE FOLLOWING:"
+    sqlite3 "$coinmaster_location" .tables
+    echo ''
+    sqlite3 "$coinmaster_location" -box
 }
