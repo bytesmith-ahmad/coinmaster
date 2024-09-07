@@ -3,6 +3,7 @@
 source "$SRC_HOME/src/shared-functions.sh"
 
 coinmaster_location='/home/ahmad/data/finances/coinmaster.sqlite' #FIXME: move to .env
+backup_location='/home/ahmad/data/finances/coinmaster.dump'
 transactions_manager="$SRC_HOME/src/coinmaster-transaction.sh"
 
 main() {
@@ -13,10 +14,23 @@ main() {
         open) open_sqlitebrowser ;;
         new) shift ; route_new "$@" ;;
         cli) start_sqlite3 ;;
-        transac*) shift ; "$transactions_manager" "$@" ;;
+        tx | transac*) shift ; "$transactions_manager" "$@" ;;
+        dump | backup) dump_database ;;
         *) echo 'nothing happened...' ;;
 
     esac
+
+}
+
+#FIXME:
+dump_database() {
+    sqlite3 "$coinmaster_location" <<EOF
+.headers on
+.output /home/ahmad/data/finances/coinmaster.dump
+.dump
+EOF
+
+echo "coinmaster.sqlite dumped to /home/ahmad/data/finances/coinmaster.dump (hardcoded)"
 
 }
 
@@ -24,7 +38,10 @@ print_guidance() {
 	echo 'coinmaster:
     cli > starts sqlite3 shell
     open > opens database in sqlitebrowser
-    new transac > inserts a transaction in coinmaster'
+    connect > invoke connection  manager
+    transac > invoke transaction manager
+    new transac > inserts a transaction in coinmaster
+    dump > dump database'
 }
 
 open_sqlitebrowser() {
