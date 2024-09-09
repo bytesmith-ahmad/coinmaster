@@ -11,9 +11,9 @@ main() {
     case "$1" in
 
         '') print_guidance ;;
-        open) open_sqlitebrowser ;;
+        cli | start) start_sqlite3 ;;
+        gui | open) open_sqlitebrowser ;;
         new) shift ; route_new "$@" ;;
-        cli) start_sqlite3 ;;
         tx | transac*) shift ; "$transactions_manager" "$@" ;;
         dump | backup) dump_database ;;
         *) echo 'nothing happened...' ;;
