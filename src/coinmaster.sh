@@ -2,9 +2,9 @@
 
 source "$SRC_HOME/src/shared-functions.sh"
 
-coinmaster_location='/home/ahmad/data/finances/coinmaster.sqlite' #FIXME: move to .env
-backup_location='/home/ahmad/data/finances/coinmaster.dump'
-transactions_manager="$SRC_HOME/src/coinmaster-transaction.sh"
+export coinmaster_location='/home/ahmad/data/finances/coinmaster.sqlite' #FIXME: move to .env
+export backup_location='/home/ahmad/data/finances/coinmaster.dump'
+export transactions_manager="$SRC_HOME/src/coinmaster-transaction.sh"
 
 main() {
 
