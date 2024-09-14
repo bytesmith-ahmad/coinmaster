@@ -62,7 +62,7 @@ collect_input() {
 EOF
 
   if [ $? -eq 0 ]; then
-    echo "Transaction $transaction_id successfully added."
+    echo "Transaction $transaction_id '$desc' successfully added."
   else
     echo "Failed to add transaction."
   fi

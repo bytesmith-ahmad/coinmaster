@@ -22,7 +22,7 @@ route() {
 
 list_expenses() {
   echo '.mode box' > $DB_INIT
-  sqlite3 -init $DB_INIT $DB_FILE 'SELECT id,desc FROM expenses;'
+  sqlite3 -init $DB_INIT $DB_FILE 'SELECT id,lender as actor,desc FROM expenses;'
 }
 
 # Function to collect user input
