@@ -45,8 +45,8 @@ collect_input() {
     fi
   done
   
-  read -p "Source: " source
-  read -p "Destination: " destination
+  read -p "From: " source
+  read -p "To: " destination
   read -p "Note: " note
   
   # Get the current timestamp
@@ -57,7 +57,7 @@ collect_input() {
   
   # Insert into SQLite database
   sqlite3 $DB_FILE <<EOF
-  INSERT INTO transactions (transaction_id, expense_id, desc, status, deadline, amount, source, destination, timestamp, note)
+  INSERT INTO transactions_new (transaction_id, expense_id, name, status, deadline, amount, "from", "to", timestamp, note)
   VALUES ('$transaction_id', $expense_id, '$desc', '$status', '$deadline', $amount, '$source', '$destination', '$timestamp', '$note');
 EOF
 
