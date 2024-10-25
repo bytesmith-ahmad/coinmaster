@@ -1,11 +1,7 @@
 #!/bin/bash
 
 source "$SRC_HOME/src/shared-functions.sh"
-
-export coinmaster_location='/home/ahmad/data/finances/coinmaster.sqlite' #FIXME: move to .env
-export backup_location='/home/ahmad/data/finances/coinmaster.dump'
-export transactions_manager="$SRC_HOME/src/coinmaster-transaction.sh"
-export expenses_manager="$SRC_HOME/src/coinmaster-expense.sh"
+source "$SRC_HOME/.env"
 
 print_guidance() {
 	echo 'coinmaster:
@@ -39,11 +35,11 @@ main() {
 dump_database() {
     sqlite3 "$coinmaster_location" <<EOF
 .headers on
-.output /home/ahmad/data/finances/coinmaster.dump
+.output /home/ahmad/data/coin/coinmaster.dump
 .dump
 EOF
 
-echo "coinmaster.sqlite dumped to /home/ahmad/data/finances/coinmaster.dump (hardcoded)"
+echo "coinmaster.sqlite dumped to /home/ahmad/data/coin/coinmaster.dump (hardcoded because of strange syntax)"
 
 }
 
