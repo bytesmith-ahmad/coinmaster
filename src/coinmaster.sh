@@ -35,11 +35,11 @@ main() {
 dump_database() {
     sqlite3 "$coinmaster_location" <<EOF
 .headers on
-.output /home/ahmad/data/coin/coinmaster.dump
+.output /home/ahmad/nexus/coin/coinmaster.dump
 .dump
 EOF
 
-echo "coinmaster.sqlite dumped to /home/ahmad/data/coin/coinmaster.dump (hardcoded because of strange syntax)"
+echo "coinmaster.sqlite dumped to /home/ahmad/nexus/coin/coinmaster.dump (i'm hardcoded FIX ME)"
 
 }
 
